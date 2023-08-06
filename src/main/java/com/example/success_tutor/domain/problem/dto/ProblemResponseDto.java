@@ -19,5 +19,6 @@ public class ProblemResponseDto {
     private String content;
     private String picture;
     private Long studentId;
+    private boolean adoptedStatus;
     private List<Reply> replies;
 }
