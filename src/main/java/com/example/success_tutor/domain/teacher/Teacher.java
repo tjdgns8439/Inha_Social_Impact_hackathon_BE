@@ -1,11 +1,16 @@
 package com.example.success_tutor.domain.teacher;
 
+import com.example.success_tutor.domain.reply.Reply;
 import com.example.success_tutor.global.BaseEntity;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
+import java.util.List;
+
+@Builder
 @Getter
 @Entity
 @AllArgsConstructor
@@ -27,4 +32,6 @@ public class Teacher extends BaseEntity {
     @Column(name = "rating")
     private double rating;
 
+    @OneToMany(mappedBy = "teacher")
+    private List<Reply> replies;
 }

@@ -25,11 +25,11 @@ public class Reply extends BaseEntity {
     @Column(name = "rating")
     private double rating;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "teacherId")
     private Teacher teacher;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "problemId")
     private Problem problem;
 }
