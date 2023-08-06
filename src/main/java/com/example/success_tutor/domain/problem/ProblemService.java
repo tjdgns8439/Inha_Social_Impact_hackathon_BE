@@ -7,7 +7,6 @@ import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -36,4 +35,9 @@ public class ProblemService {
         problemRepository.deleteById(id);
     }
 
+    @Transactional
+    public void updateProblem(Long id, ProblemRequestDto problemRequestDto) {
+        Problem problem = problemRepository.findById(id).orElseThrow();
+        problem.update(problemRequestDto);
+    }
 }

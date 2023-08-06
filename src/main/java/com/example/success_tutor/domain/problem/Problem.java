@@ -43,4 +43,9 @@ public class Problem extends BaseEntity {
                 .build();
     }
 
+    public void update(ProblemRequestDto problemRequestDto) {
+        this.content = problemRequestDto.getContent();
+        this.picture = problemRequestDto.getPicture();
+    }
+
 }
