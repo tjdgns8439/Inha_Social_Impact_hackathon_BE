@@ -12,6 +12,8 @@ import lombok.Setter;
 public class ProblemRequestDto {
 
     private String content;
+
     private String picture;
+
     private Long studentId;
 }

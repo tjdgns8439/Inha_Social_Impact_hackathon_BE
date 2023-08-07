@@ -18,22 +18,51 @@ public class ProblemController {
 
     private final ProblemService problemService;
 
-    @PostMapping("/")
-    public ResponseEntity<?> postProblem(@RequestBody ProblemRequestDto requestDto) {
-        return new ResponseEntity<>(problemService.postProblem(requestDto), HttpStatus.OK);
-    }
-
+    /**
+     * @methodName : getProblem
+     * @param :@PathVariable Long id - Problem의 id
+     * @return : 해당 id의 문제 엔티티를 반환합니다.
+     * @Description:
+     * @note:
+     **/
     @GetMapping("/{id}")
     public ResponseEntity<?> getProblem(@PathVariable Long id) {
         return new ResponseEntity<>(problemService.getProblem(id), HttpStatus.OK);
     }
 
+    /**
+    * @methodName : postProblem
+    * @param : roblemRequestDto requestDto
+    * @return : 
+    * @Description: roblemRequestDto requestDto를 받아 저장합니다
+    * @note:
+    **/
+    @PostMapping()
+    public ResponseEntity<?> postProblem(@RequestBody ProblemRequestDto dto) {
+        problemService.postProblem(dto);
+        return new ResponseEntity<>(HttpStatus.CREATED);
+    }
+
+    /**
+     * @methodName : updateProblem
+     * @param :
+     * @return :
+     * @Description:
+     * @note:
+     **/
     @PatchMapping("/{id}")
     public ResponseEntity<?> updateProblem(@PathVariable("id") Long id, @RequestBody ProblemRequestDto historyRequestDto) {
         problemService.updateProblem(id, historyRequestDto);
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
+    /**
+     * @methodName : deleteProblem
+     * @param :
+     * @return :
+     * @Description:
+     * @note:
+     **/
     @DeleteMapping("/{id}")
     public ResponseEntity<?> deleteProblem(@PathVariable("id") Long id) {
         problemService.deleteProblem(id);
