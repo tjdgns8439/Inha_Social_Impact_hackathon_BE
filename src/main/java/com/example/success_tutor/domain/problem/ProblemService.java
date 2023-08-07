@@ -2,31 +2,51 @@ package com.example.success_tutor.domain.problem;
 
 import com.example.success_tutor.domain.problem.dto.ProblemRequestDto;
 import com.example.success_tutor.domain.problem.dto.ProblemResponseDto;
+import com.example.success_tutor.domain.reply.Reply;
+import com.example.success_tutor.domain.reply.dto.ProblemReplyResponseDto;
+import com.example.success_tutor.domain.student.Student;
+import com.example.success_tutor.domain.student.StudentRepository;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
 public class ProblemService {
+
     private final ProblemRepository problemRepository;
 
+    private final StudentRepository studentRepository;
 
+    /**
+     * @param :
+     * @return : ProblemResponseDto
+     * @methodName : getProblem
+     * @Description:
+     * @note:
+     **/
     @Transactional
     public ProblemResponseDto getProblem(Long problemId) {
         Optional<Problem> problem = problemRepository.findById(problemId);
-        ProblemResponseDto responseDto = new ProblemResponseDto();
-        BeanUtils.copyProperties(problem, responseDto);
-        return responseDto;
+        return ProblemResponseDto.toDto(problem.get());
     }
 
+    /**
+     * @param : ProblemRequestDto dto
+     * @return :
+     * @methodName : postProblem
+     * @Description: ProblemRequestDto dto를 받아 Problem을 저장합니다.
+     * @note:
+     **/
     @Transactional
-    public Problem postProblem(ProblemRequestDto dto) {
-        Problem problem = Problem.toProblem(dto);
-        return problemRepository.save(problem);
+    public void postProblem(ProblemRequestDto dto) {
+        Optional<Student> findedStudent = studentRepository.findById(dto.getStudentId());
+        Problem problem = Problem.toProblem(dto, findedStudent.get());
+        problemRepository.save(problem);
     }
 
 
