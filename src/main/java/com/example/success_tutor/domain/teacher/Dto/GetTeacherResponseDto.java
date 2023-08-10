@@ -27,6 +27,10 @@ public class GetTeacherResponseDto {
 
     private double rating;
 
+    private String major;
+
+    private String phoneNum;
+
     // 목록에 reply는 필요하지 않으므로 제외
     // private List<Reply> replies;
 
@@ -36,7 +40,9 @@ public class GetTeacherResponseDto {
                 .teacherId(entity.getTeacherId())
                 .name(entity.getName())
                 .school(entity.getSchool())
+                .major(entity.getMajor())
                 .prob_num(entity.getProb_num())
+                .phoneNum(entity.getPhoneNum())
                 .rating(entity.getRating())
                 .build();
     }
