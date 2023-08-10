@@ -28,11 +28,17 @@ public class Teacher extends BaseEntity {
     @Column(name = "school")
     private String school;
 
+    @Column(name = "major")
+    private String major;
+
     @Column(name = "prob_num")
     private int prob_num;
 
     @Column(name = "rating")
     private double rating;
+
+    @Column(name = "phone_num")
+    private String phone_num;
 
     @OneToMany(mappedBy = "teacher")
     private List<Reply> replies;
@@ -41,6 +47,8 @@ public class Teacher extends BaseEntity {
         return Teacher.builder()
                 .name(dto.getName())
                 .school(dto.getSchool())
+                .major(dto.getMajor())
+                .phone_num(dto.getPhone_num())
                 .build();
     }
 }
