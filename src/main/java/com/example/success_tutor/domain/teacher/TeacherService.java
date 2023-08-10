@@ -41,4 +41,8 @@ public class TeacherService {
         Teacher teacher = Teacher.toEntity(dto);
         teacherRepository.save(teacher);
     }
+
+    public void deleteTeacherById(Long id) {
+        teacherRepository.deleteById(id);
+    }
 }

@@ -23,4 +23,10 @@ public class TeacherController {
     public ResponseEntity<?> getTeacher() {
         return new ResponseEntity<>(teacherService.GetTeacherResponseDto(),HttpStatus.FOUND);
     }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<String> deleteTeacher(@PathVariable Long id) {
+        teacherService.deleteTeacherById(id);
+        return new ResponseEntity<>("id: "+id+"번이 삭제되었습니다.", HttpStatus.OK);
+    }
 }
