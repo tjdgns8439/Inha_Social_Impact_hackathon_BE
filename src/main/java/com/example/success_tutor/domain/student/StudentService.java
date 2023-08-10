@@ -30,4 +30,9 @@ public class StudentService {
         Optional<Student> findedStudent = studentRepository.findById(id);
         return StudentResponseDto.toDto(findedStudent.get());
     }
+
+    @Transactional
+    public void deleteStudentById(Long Id) {
+        studentRepository.deleteById(Id);
+    }
 }

@@ -29,4 +29,10 @@ public class StudentController {
             throw new StudentPhoneAlreadyExistsException();
         }
     }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<String> deleteStudent(@PathVariable Long id) {
+        studentService.deleteStudentById(id);
+        return new ResponseEntity<>("id: "+id+"번이 삭제되었습니다.", HttpStatus.OK);
+    }
 }
