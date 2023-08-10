@@ -11,4 +11,5 @@ import lombok.Setter;
 public class StudentRequestDto {
     private String name;
     private int grade;
+    private String phoneNum;
 }
