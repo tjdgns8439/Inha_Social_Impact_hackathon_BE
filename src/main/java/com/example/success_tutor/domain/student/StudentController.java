@@ -1,9 +1,7 @@
 package com.example.success_tutor.domain.student;
 
 import com.example.success_tutor.domain.student.dto.CreateStudentRequestDto;
-import com.example.success_tutor.global.BaseEntity;
-import com.sun.source.tree.MemberSelectTree;
-import lombok.Getter;
+import com.example.success_tutor.global.exception.student.StudentPhoneAlreadyExistsException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -18,14 +16,17 @@ public class StudentController {
 
 
     @GetMapping("/{id}")
-    public ResponseEntity<?> getStudent(@PathVariable Long id){
+    public ResponseEntity<Object> getStudent(@PathVariable Long id){
         return new ResponseEntity<>(studentService.findStudent(id),HttpStatus.FOUND);
     }
 
     @PostMapping()
-    public ResponseEntity<?> createStudent(@RequestBody CreateStudentRequestDto dto){
-        studentService.createStudent(dto);
-        return new ResponseEntity<>(HttpStatus.CREATED);
+    public ResponseEntity<Object> createStudent(@RequestBody CreateStudentRequestDto dto){
+        try {
+            studentService.createStudent(dto);
+            return new ResponseEntity<>(HttpStatus.CREATED);
+        } catch (RuntimeException e) {
+            throw new StudentPhoneAlreadyExistsException();
+        }
     }
-
 }
