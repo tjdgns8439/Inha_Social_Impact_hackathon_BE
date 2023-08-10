@@ -32,12 +32,17 @@ public class Student extends BaseEntity {
     @Column(name = "grade")
     private int grade;
 
+    //핸드폰번호, 중복가입 제거 식별자
+    @Column(name = "phoneNum")
+    private String phoneNum;
+
     @OneToMany(mappedBy = "student")
     private List<Problem> problems;
 
     public static Student toEntity(CreateStudentRequestDto dto) {
         return Student.builder()
                 .name(dto.getName())
+                .phoneNum(dto.getPhoneNum())
                 .grade(dto.getGrade())
                 .build();
     }
