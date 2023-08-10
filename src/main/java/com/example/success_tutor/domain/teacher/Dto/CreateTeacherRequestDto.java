@@ -20,6 +20,12 @@ public class CreateTeacherRequestDto {
     //학교
     private String school;
 
+    //전공
+    private String major;
+
+    //핸드폰 번호
+    private String phone_num;
+
     // 초기 생성시 제외
     //private int prob_num;
     //private double rating;
