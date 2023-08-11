@@ -7,12 +7,19 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @AllArgsConstructor
 public class TeacherService {
 
     private final TeacherRepository teacherRepository;
+
+    @Transactional
+    public GetTeacherResponseDto findByIdTeacher(Long id) {
+        Optional<Teacher> teacher = teacherRepository.findById(id);
+        return GetTeacherResponseDto.toDto(teacher.get());
+    }
 
     /**
     * @methodName : GetTeacherResponseDto
@@ -41,4 +48,10 @@ public class TeacherService {
         Teacher teacher = Teacher.toEntity(dto);
         teacherRepository.save(teacher);
     }
+
+    @Transactional
+    public void deleteTeacherById(Long id) {
+        teacherRepository.deleteById(id);
+    }
+
 }

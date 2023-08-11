@@ -24,6 +24,10 @@ public class ReplyTeacherResponseDto {
 
     private double rating;
 
+    private String major;
+
+    private String phoneNum;
+
     // 목록에 reply는 필요하지 않으므로 제외
     // private List<Reply> replies;
 
@@ -31,6 +35,8 @@ public class ReplyTeacherResponseDto {
         return ReplyTeacherResponseDto.builder()
                 .name(entity.getName())
                 .school(entity.getSchool())
+                .major(entity.getMajor())
+                .phoneNum(entity.getPhoneNum())
                 .prob_num(entity.getProb_num())
                 .rating(entity.getRating())
                 .build();

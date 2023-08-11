@@ -24,7 +24,7 @@ public class CreateTeacherRequestDto {
     private String major;
 
     //핸드폰 번호
-    private String phone_num;
+    private String phoneNum;
 
     // 초기 생성시 제외
     //private int prob_num;
