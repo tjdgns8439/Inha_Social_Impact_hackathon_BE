@@ -17,12 +17,8 @@ public class StudentController {
 
     @PostMapping()
     public ResponseEntity<Object> createStudent(@RequestBody CreateStudentRequestDto dto){
-        try {
             studentService.createStudent(dto);
             return new ResponseEntity<>(HttpStatus.CREATED);
-        } catch (RuntimeException e) {
-            throw new StudentPhoneAlreadyExistsException();
-        }
     }
 
     @GetMapping("/{id}")
