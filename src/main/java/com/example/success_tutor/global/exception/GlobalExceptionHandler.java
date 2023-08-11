@@ -20,5 +20,4 @@ public class GlobalExceptionHandler {
         ErrorResponse errorResponse = new ErrorResponse(errorCode);
         return new ResponseEntity<>(errorResponse, errorCode.getStatus());
     }
-
 }

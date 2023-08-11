@@ -4,17 +4,15 @@ import com.example.success_tutor.domain.reply.Reply;
 import com.example.success_tutor.domain.teacher.Teacher;
 import jakarta.persistence.Column;
 import jakarta.persistence.OneToMany;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import java.util.List;
 
+@Getter
+@Setter
+@Builder
 @AllArgsConstructor
 @NoArgsConstructor
-@Builder
-@Getter
 public class GetTeacherResponseDto {
 
     private Long teacherId;
@@ -23,13 +21,14 @@ public class GetTeacherResponseDto {
 
     private String school;
 
+    private String major;
+
     private int prob_num;
+
+    private String phoneNum;
 
     private double rating;
 
-    private String major;
-
-    private String phoneNum;
 
     // 목록에 reply는 필요하지 않으므로 제외
     // private List<Reply> replies;

@@ -26,5 +26,4 @@ public class ReplyController {
         replyService.createReply(dto);
         return new ResponseEntity<>(HttpStatus.OK);
     }
-
 }

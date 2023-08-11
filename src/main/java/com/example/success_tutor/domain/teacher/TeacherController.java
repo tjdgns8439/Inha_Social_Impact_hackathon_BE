@@ -25,8 +25,8 @@ public class TeacherController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Object> getTeacher(@PathVariable Long id){
-        return new ResponseEntity<>(teacherService.findByIdTeacher(id),HttpStatus.FOUND);
+    public ResponseEntity<Object> getTeacherById(@PathVariable Long id){
+        return new ResponseEntity<>(teacherService.findTeacherById(id),HttpStatus.FOUND);
     }
 
 

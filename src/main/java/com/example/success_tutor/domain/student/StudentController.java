@@ -15,11 +15,6 @@ public class StudentController {
     private final StudentService studentService;
 
 
-    @GetMapping("/{id}")
-    public ResponseEntity<Object> getStudent(@PathVariable Long id){
-        return new ResponseEntity<>(studentService.findStudent(id),HttpStatus.FOUND);
-    }
-
     @PostMapping()
     public ResponseEntity<Object> createStudent(@RequestBody CreateStudentRequestDto dto){
         try {
@@ -28,6 +23,11 @@ public class StudentController {
         } catch (RuntimeException e) {
             throw new StudentPhoneAlreadyExistsException();
         }
+    }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<Object> getStudent(@PathVariable Long id){
+        return new ResponseEntity<>(studentService.findStudent(id),HttpStatus.FOUND);
     }
 
     @DeleteMapping("/{id}")

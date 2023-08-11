@@ -2,6 +2,7 @@ package com.example.success_tutor.domain.student;
 
 import com.example.success_tutor.domain.student.dto.CreateStudentRequestDto;
 import com.example.success_tutor.domain.student.dto.StudentResponseDto;
+import com.example.success_tutor.global.exception.student.StudentNotFoundException;
 import com.example.success_tutor.global.exception.student.StudentPhoneAlreadyExistsException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -27,12 +28,21 @@ public class StudentService {
 
     @Transactional
     public StudentResponseDto findStudent(Long id){
-        Optional<Student> findedStudent = studentRepository.findById(id);
-        return StudentResponseDto.toDto(findedStudent.get());
+        try {
+            Optional<Student> findedStudent = studentRepository.findById(id);
+            return StudentResponseDto.toDto(findedStudent.get());
+        }catch (RuntimeException e){
+            throw new StudentNotFoundException();
+        }
     }
 
+    //delete는 리퍼지토리에 없어도 예외를 발생시키지 않기 때문에 find해서 있으면 삭제, 없으면 예외처리
     @Transactional
     public void deleteStudentById(Long Id) {
-        studentRepository.deleteById(Id);
+        if(!studentRepository.existsById(Id))
+            throw new StudentNotFoundException();
+        else{
+            studentRepository.deleteById(Id);
+        }
     }
 }
