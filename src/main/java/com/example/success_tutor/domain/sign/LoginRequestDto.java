@@ -1,18 +1,14 @@
-package com.example.success_tutor.domain.student.dto;
+package com.example.success_tutor.domain.sign;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import lombok.Setter;
 
 @Getter
-@Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class CreateStudentRequestDto {
+public class LoginRequestDto {
 
-    private String name;
-    private int grade;
     private String phoneNum;
     private String password;
 

@@ -2,16 +2,12 @@ package com.example.success_tutor.domain.problem;
 
 import com.example.success_tutor.domain.problem.dto.ProblemRequestDto;
 import com.example.success_tutor.domain.problem.dto.ProblemResponseDto;
-import com.example.success_tutor.domain.reply.Reply;
-import com.example.success_tutor.domain.reply.dto.ProblemReplyResponseDto;
 import com.example.success_tutor.domain.student.Student;
 import com.example.success_tutor.domain.student.StudentRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Optional;
 
 @Service
