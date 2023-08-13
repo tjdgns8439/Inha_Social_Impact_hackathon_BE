@@ -4,10 +4,13 @@ import com.example.success_tutor.domain.problem.dto.ProblemRequestDto;
 import com.example.success_tutor.domain.problem.dto.ProblemResponseDto;
 import com.example.success_tutor.domain.student.Student;
 import com.example.success_tutor.domain.student.StudentRepository;
+import com.example.success_tutor.domain.teacher.Dto.GetTeacherResponseDto;
+import com.example.success_tutor.global.exception.problem.ProblemNotFoundException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -18,8 +21,9 @@ public class ProblemService {
 
     private final StudentRepository studentRepository;
 
+
     /**
-     * @param :
+     * @param : problemId
      * @return : ProblemResponseDto
      * @methodName : getProblem
      * @Description:
@@ -27,9 +31,29 @@ public class ProblemService {
      **/
     @Transactional
     public ProblemResponseDto getProblem(Long problemId) {
-        Optional<Problem> problem = problemRepository.findById(problemId);
-        return ProblemResponseDto.toDto(problem.get());
+        try{
+            Optional<Problem> problem = problemRepository.findById(problemId);
+            return ProblemResponseDto.toDto(problem.get());
+        }catch (RuntimeException e){
+            throw new ProblemNotFoundException();
+        }
     }
+
+    /**
+     * @param :
+     * @return : List<ProblemResponseDto>
+     * @methodName : getProblem
+     * @Description:
+     * @note:
+     **/
+    @Transactional
+    public List<ProblemResponseDto> getProblemList() {
+        List<ProblemResponseDto> problemList = problemRepository.findAll().stream().map(
+                problem -> ProblemResponseDto.toDto(problem)
+        ).toList();
+        return problemList;
+    }
+
 
     /**
      * @param : ProblemRequestDto dto

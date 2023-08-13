@@ -31,6 +31,18 @@ public class ProblemController {
     }
 
     /**
+     * @methodName : getProblemList
+     * @param :
+     * @return : ProblemList를 반환합니다.
+     * @Description:
+     * @note:
+     **/
+    @GetMapping()
+    public ResponseEntity<?> getProblemList() {
+        return new ResponseEntity<>(problemService.getProblemList(), HttpStatus.OK);
+    }
+
+    /**
     * @methodName : postProblem
     * @param : roblemRequestDto requestDto
     * @return : 

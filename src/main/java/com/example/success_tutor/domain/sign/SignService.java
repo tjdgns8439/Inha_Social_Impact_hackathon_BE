@@ -32,6 +32,4 @@ public class SignService {
 
         return LoginResponseDto.toDto(find.getToken());
     }
-
-
 }

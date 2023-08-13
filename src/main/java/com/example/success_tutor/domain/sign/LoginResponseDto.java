@@ -16,7 +16,6 @@ public class LoginResponseDto {
 
 
     public static LoginResponseDto toDto(String token) {
-
         return LoginResponseDto.builder().token(token).build();
     }
 }
