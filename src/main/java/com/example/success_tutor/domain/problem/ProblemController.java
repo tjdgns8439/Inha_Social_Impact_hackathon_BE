@@ -56,6 +56,19 @@ public class ProblemController {
         return new ResponseEntity<>(problemResponseDtoList, HttpStatus.OK);
     }
 
+    /**
+     * @methodName : getProblemListBySubjectAndGrade
+     * @param : Integer grade
+     * @return : List<ProblemResponseDto>
+     * @Description: subject & grade로 해당하는 문제 리스트를 반환합니다.
+     * @note:
+     **/
+    @GetMapping("/category/{subject}/{grade}")
+    public ResponseEntity<List<ProblemResponseDto>> getProblemListBySubjectAndGrade(@PathVariable String subject, @PathVariable Integer grade) {
+        List<ProblemResponseDto> problemResponseDtoList = problemService.getProblemListBySubjectAndGrade(subject, grade);
+        return new ResponseEntity<>(problemResponseDtoList, HttpStatus.OK);
+    }
+
 
 
     /**

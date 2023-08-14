@@ -65,6 +65,21 @@ public class ProblemService {
     }
 
     /**
+     * @methodName : getProblemListBySubjectAndGrade
+     * @param : Integer grade
+     * @return : List<ProblemResponseDto>
+     * @Description: subject & grade로 해당하는 문제 리스트를 반환합니다.
+     * @note:
+     **/
+    @Transactional
+    public List<ProblemResponseDto> getProblemListBySubjectAndGrade(String subject, Integer grade) {
+        List<Problem> problems = problemRepository.findBySubjectAndGrade(subject, grade);
+        return problems.stream()
+                .map(problem -> ProblemResponseDto.toDto(problem))
+                .collect(Collectors.toList());
+    }
+
+    /**
      * @param : ProblemRequestDto dto
      * @return :
      * @methodName : postProblem
