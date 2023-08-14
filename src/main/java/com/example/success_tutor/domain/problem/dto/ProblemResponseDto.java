@@ -17,6 +17,7 @@ public class ProblemResponseDto {
 
     private String content;
     private String picture;
+    private String category;
     private StudentResponseDto student;
     private Status status;
     private List<ProblemReplyResponseDto> replies;
@@ -25,6 +26,7 @@ public class ProblemResponseDto {
         ProblemResponseDto buildDto = ProblemResponseDto.builder()
                 .content(entity.getContent())
                 .picture(entity.getPicture())
+                .category(entity.getCategory())
                 .student(StudentResponseDto.toDto(entity.getStudent()))
                 .status(entity.getStatus())
                 .replies(entity.getReplies().stream().map(

@@ -4,11 +4,14 @@ import com.example.success_tutor.domain.problem.dto.ProblemRequestDto;
 import com.example.success_tutor.domain.problem.dto.ProblemResponseDto;
 import com.example.success_tutor.domain.student.Student;
 import com.example.success_tutor.domain.student.StudentRepository;
+import com.example.success_tutor.domain.teacher.Dto.GetTeacherResponseDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
@@ -29,6 +32,21 @@ public class ProblemService {
     public ProblemResponseDto getProblem(Long problemId) {
         Optional<Problem> problem = problemRepository.findById(problemId);
         return ProblemResponseDto.toDto(problem.get());
+    }
+
+    /**
+     * @methodName : getProblemListByCategory
+     * @param : String category
+     * @return : List<ProblemResponseDto>
+     * @Description: category(과목이름)로 해당하는 문제 리스트를 뽑아옵니다.
+     * @note:
+     **/
+    @Transactional
+    public List<ProblemResponseDto> getProblemListByCategory(String category) {
+        List<Problem> problems = problemRepository.findByCategory(category);
+        return problems.stream()
+                .map(problem -> ProblemResponseDto.toDto(problem))
+                .collect(Collectors.toList());
     }
 
     /**

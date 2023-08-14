@@ -31,10 +31,25 @@ public class ProblemController {
     }
 
     /**
+     * @methodName : getProblemListByCategory
+     * @param :@PathVariable String category - Problem의 category
+     * @return : ResponseEntity<List<ProblemResponseDto>>
+     * @Description: category(과목이름)로 해당하는 문제 리스트를 반환합니다.
+     * @note:
+     **/
+    @GetMapping("/category/{category}")
+    public ResponseEntity<List<ProblemResponseDto>> getProblemListByCategory(@PathVariable String category) {
+        List<ProblemResponseDto> problemResponseDtoList = problemService.getProblemListByCategory(category);
+        return new ResponseEntity<>(problemResponseDtoList, HttpStatus.OK);
+    }
+
+
+
+    /**
     * @methodName : postProblem
-    * @param : roblemRequestDto requestDto
+    * @param : problemRequestDto requestDto
     * @return : 
-    * @Description: roblemRequestDto requestDto를 받아 저장합니다
+    * @Description: problemRequestDto requestDto를 받아 저장합니다
     * @note:
     **/
     @PostMapping()
