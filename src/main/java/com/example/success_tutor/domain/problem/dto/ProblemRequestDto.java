@@ -16,4 +16,9 @@ public class ProblemRequestDto {
     private String picture;
 
     private Long studentId;
+
+    private Integer grade;
+
+    private String subject;
+
 }

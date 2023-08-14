@@ -32,9 +32,24 @@ public class Problem extends BaseEntity {
     @Column(name = "picture")
     private String picture;
 
+
+    //문제 과목
+    @Column(name = "subject")
+    private String subject;
+
+    /**
+     * 문제 교육과정
+     * 초등학교 1 ~ 6
+     * 중학교 7 ~ 9
+     * 고등학교 10 ~12
+     */
+    @Column(name = "grade")
+    private Integer grade;
+
     //채택 상태
     @Column(name = "status")
     private Status status;
+
 
     //작성자 정보
     @ManyToOne(fetch = FetchType.LAZY)
@@ -49,6 +64,8 @@ public class Problem extends BaseEntity {
         return Problem.builder()
                 .content(dto.getContent())
                 .picture(dto.getPicture())
+                .subject(dto.getSubject())
+                .grade(dto.getGrade())
                 .status(Status.NotAdopted)
                 .student(student)
                 .build();
