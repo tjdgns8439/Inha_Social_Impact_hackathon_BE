@@ -17,5 +17,8 @@ public class ProblemRequestDto {
 
     private Long studentId;
 
-    private String category;
+    private Integer grade;
+
+    private String subject;
+
 }

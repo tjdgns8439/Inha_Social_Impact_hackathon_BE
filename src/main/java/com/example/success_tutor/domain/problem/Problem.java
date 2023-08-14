@@ -32,9 +32,19 @@ public class Problem extends BaseEntity {
     @Column(name = "picture")
     private String picture;
 
+
     //문제 과목
-    @Column(name = "category")
-    private String category;
+    @Column(name = "subject")
+    private String subject;
+
+    /**
+     * 문제 교육과정
+     * 초등학교 1 ~ 6
+     * 중학교 7 ~ 9
+     * 고등학교 10 ~12
+     */
+    @Column(name = "grade")
+    private Integer grade;
 
     //채택 상태
     @Column(name = "status")
@@ -54,7 +64,8 @@ public class Problem extends BaseEntity {
         return Problem.builder()
                 .content(dto.getContent())
                 .picture(dto.getPicture())
-                .category(dto.getCategory())
+                .subject(dto.getSubject())
+                .grade(dto.getGrade())
                 .status(Status.NotAdopted)
                 .student(student)
                 .build();

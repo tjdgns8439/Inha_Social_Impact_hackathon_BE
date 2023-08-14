@@ -31,15 +31,28 @@ public class ProblemController {
     }
 
     /**
-     * @methodName : getProblemListByCategory
-     * @param :@PathVariable String category - Problem의 category
+     * @methodName : getProblemListBysubject
+     * @param :@PathVariable String subject - Problem의 subject
      * @return : ResponseEntity<List<ProblemResponseDto>>
-     * @Description: category(과목이름)로 해당하는 문제 리스트를 반환합니다.
+     * @Description: subject(과목이름)로 해당하는 문제 리스트를 반환합니다.
      * @note:
      **/
-    @GetMapping("/category/{category}")
-    public ResponseEntity<List<ProblemResponseDto>> getProblemListByCategory(@PathVariable String category) {
-        List<ProblemResponseDto> problemResponseDtoList = problemService.getProblemListByCategory(category);
+    @GetMapping("/category/subject/{subject}")
+    public ResponseEntity<List<ProblemResponseDto>> getProblemListBySubject(@PathVariable String subject) {
+        List<ProblemResponseDto> problemResponseDtoList = problemService.getProblemListBySubject(subject);
+        return new ResponseEntity<>(problemResponseDtoList, HttpStatus.OK);
+    }
+
+    /**
+     * @methodName : getProblemListBysubject
+     * @param :@PathVariable String subject - Problem의 subject
+     * @return : ResponseEntity<List<ProblemResponseDto>>
+     * @Description: subject(과목이름)로 해당하는 문제 리스트를 반환합니다.
+     * @note:
+     **/
+    @GetMapping("/category/grade/{grade}")
+    public ResponseEntity<List<ProblemResponseDto>> getProblemListByGrade(@PathVariable Integer grade) {
+        List<ProblemResponseDto> problemResponseDtoList = problemService.getProblemListByGrade(grade);
         return new ResponseEntity<>(problemResponseDtoList, HttpStatus.OK);
     }
 

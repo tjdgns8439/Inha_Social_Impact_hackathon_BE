@@ -9,5 +9,7 @@ import java.util.Optional;
 
 @Repository
 public interface ProblemRepository extends JpaRepository<Problem, Long> {
-    List<Problem> findByCategory(String category);
+    List<Problem> findBySubject(String subject);
+    List<Problem> findByGrade(Integer grade);
+    List<Problem> findBySubjectAndGrade(String subject,Integer grade);
 }

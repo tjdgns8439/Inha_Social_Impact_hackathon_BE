@@ -35,15 +35,30 @@ public class ProblemService {
     }
 
     /**
-     * @methodName : getProblemListByCategory
-     * @param : String category
+     * @methodName : getProblemListBySubject
+     * @param : String subject
      * @return : List<ProblemResponseDto>
-     * @Description: category(과목이름)로 해당하는 문제 리스트를 뽑아옵니다.
+     * @Description: subject(과목이름)로 해당하는 문제 리스트를 반환합니다.
      * @note:
      **/
     @Transactional
-    public List<ProblemResponseDto> getProblemListByCategory(String category) {
-        List<Problem> problems = problemRepository.findByCategory(category);
+    public List<ProblemResponseDto> getProblemListBySubject(String subject) {
+        List<Problem> problems = problemRepository.findBySubject(subject);
+        return problems.stream()
+                .map(problem -> ProblemResponseDto.toDto(problem))
+                .collect(Collectors.toList());
+    }
+
+    /**
+     * @methodName : getProblemListByGrade
+     * @param : Integer grade
+     * @return : List<ProblemResponseDto>
+     * @Description: grade(교육과정학년)로 해당하는 문제 리스트를 반환합니다.
+     * @note:
+     **/
+    @Transactional
+    public List<ProblemResponseDto> getProblemListByGrade(Integer grade) {
+        List<Problem> problems = problemRepository.findByGrade(grade);
         return problems.stream()
                 .map(problem -> ProblemResponseDto.toDto(problem))
                 .collect(Collectors.toList());
