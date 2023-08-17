@@ -31,7 +31,7 @@ public class ProblemController {
     }
 
     /**
-     * @methodName : getProblemListBysubject
+     * @methodName : getProblemListBySubject
      * @param :@PathVariable String subject - Problem의 subject
      * @return : ResponseEntity<List<ProblemResponseDto>>
      * @Description: subject(과목이름)로 해당하는 문제 리스트를 반환합니다.
