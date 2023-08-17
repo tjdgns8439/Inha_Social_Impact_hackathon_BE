@@ -19,3 +19,21 @@ spring:
 
     logging.level:
         org.hibernate.SQL: debug
+    # 파일 크기 제한 30MB로 확장
+    servlet:
+        multipart:
+            max-file-size: 30MB
+            max-request-size: 30MB
+
+
+cloud:
+    aws:
+        credentials:
+            accessKey: ${AWS_ACCESS_KEY_ID}       # AWS IAM AccessKey 적기
+            secretKey: ${AWS_SECRET_ACCESS_KEY}   # AWS IAM SecretKey 적기
+        s3:
+            bucket: ${AWS_S3_BUCKET_NAME}
+        region:
+            static: ap-northeast-2
+        stack:
+            auto: false
