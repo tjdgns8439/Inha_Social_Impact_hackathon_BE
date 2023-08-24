@@ -48,8 +48,8 @@ jobs:
       - name: Deploy Consumer to EB
         uses: einaregilsson/beanstalk-deploy@v14
         with:
-          aws_access_key: ${{ AWS_IAM_ACCESS_KEY_ID }}
-          aws_secret_key: ${{ AWS_IAM_SECRET_ACCESS_KEY }}
+          aws_access_key: ${{ secretes.AWS_IAM_ACCESS_KEY_ID }}
+          aws_secret_key: ${{ secretes.AWS_IAM_SECRET_ACCESS_KEY }}
           application_name: tutor_EB
           environment_name: TutorEB-env
           version_label: tutor-application-prod-label-${{steps.current-time.outputs.formattedTime}}-${{github.sha}}
